@@ -1,19 +1,38 @@
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 
 namespace RaifProjects
 {
     public class Tests
     {
+        public IWebDriver? Driver;
+        
         [SetUp]
-        public void Setup()
+        protected void SetUp()
         {
-            //+
+             StartTestBrowser();
         }
 
-        [Test]
-        public void Test1()
+        [TearDown]
+        protected void TearDown()
         {
-            Assert.Pass();
+            Driver?.Quit();
+        }
+
+       
+        private void StartTestBrowser()
+        {
+
+            Driver = new FirefoxDriver();
+            Driver.Manage().Window.Maximize();
+       
+        }  
+
+        [Test]
+        public void OpenYandexPage()
+        {
+            Driver?.Navigate().GoToUrl("https://www.yandex.ru");
         }
     }
 }
