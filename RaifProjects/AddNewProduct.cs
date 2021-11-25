@@ -54,7 +54,7 @@ namespace RaifProjects
 
             Driver?.FindElement(By.Name("new_images[]")).SendKeys($"{Environment.CurrentDirectory}" + @"\duck.png"); 
 
-            //FillData(Driver, "new_images[]", @"\duck.png");
+            
             FillData(Driver, "date_valid_from", "2021-11-25");
             FillData(Driver, "date_valid_to", "2022-11-25");
 
