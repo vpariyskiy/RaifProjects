@@ -46,6 +46,8 @@ namespace RaifProjects
                 var ducks = Driver?.FindElements(By.XPath(".//ul[@class='listing-wrapper products']//li"));
                 ducks[i].FindElement(By.XPath("./a[@class='link']")).Click();
                 Driver?.Navigate().Refresh();
+                if (Driver?.FindElements(By.Name("options[Size]")).Count() >= 1)
+                    Driver?.FindElement(By.Name("options[Size]")).SendKeys("Small");
                 Driver?.FindElement(By.Name("add_cart_product")).Click();
                
                 if (i == 0)
