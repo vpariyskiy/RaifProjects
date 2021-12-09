@@ -15,32 +15,24 @@ namespace RaifProjects.Work19.Tests
         [Test]
         public void WorkWithCart ()
         {
-            int counter = default;
+            
             Cart.OpenHomePage();
             
             for (var i=0;i<3;i++)
             {
                 AppManager.mainPage.ClickToDuck(i);
-                Cart.Refresh();
-                AppManager.productPage.ChechkSizeOptions();
-
-                AppManager.productPage.AddToCart();
-                if (i == 0)
-                   counter = 0;
                 
-                    Cart.wdv.Until(x=>AppManager.productPage.CartCounter() == counter + 1);
-                   counter += 1;
+                Cart.Refresh();
+               
+                AppManager.productPage.AddToCart(i,Cart);
+               
                 Cart.Back();
             }
-            counter = 0;
+           
             AppManager.productPage.GoToCheckout();
-            counter = AppManager.cartPage.OrderSummaryCounter();
-            while (counter > 0)
-            {
-                AppManager.cartPage.RemoveItemFromCart();
-                Cart.wdv.Until(x => AppManager.cartPage.OrderSummaryCounter() < counter);
-                counter = AppManager.cartPage.OrderSummaryCounter();
-            }
+           
+            AppManager.cartPage.RemoveAllItemsFromCart(Cart);
+             
             Cart.Back();
         }
     }

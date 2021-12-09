@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using RaifProjects.Work19.Managers;
+using RaifProjects.Work19.Tests;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,10 +23,16 @@ namespace RaifProjects.Work19.Pages
            return Driver.FindElements(By.CssSelector("table.dataTable tr")).Count();
         }
         
-
-        public void RemoveItemFromCart()
+        public void RemoveAllItemsFromCart(WorkCartTest Cart)
         {
-            Driver.FindElement(By.Name("remove_cart_item")).Click();
+            int counter = OrderSummaryCounter();
+
+            while (counter > 0)
+            {
+                Driver.FindElement(By.Name("remove_cart_item")).Click();
+                Cart.wdv.Until(x => OrderSummaryCounter() < counter);
+                counter = OrderSummaryCounter();
+            }   
         }
     }
 }
