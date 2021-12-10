@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using RaifProjects.Work19.Base;
 using RaifProjects.Work19.Managers;
 
@@ -7,10 +8,12 @@ namespace RaifProjects.Work19.Tests
     public class WorkCartTest:TestBase
     {
         public WorkCartTest Cart;
+        //public IWebDriver driver;
         public ApplicationManager AppManager => new(Driver);
         public WorkCartTest():base()
         {
             Cart = this;
+           // driver = Driver;
         }
         [Test]
         public void WorkWithCart ()

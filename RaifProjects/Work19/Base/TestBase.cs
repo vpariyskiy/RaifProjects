@@ -57,5 +57,14 @@ namespace RaifProjects.Work19.Base
         {
             Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
         }
+        public void OpenHomePageSpecFlow()
+        {
+            Init();
+            Driver.Navigate().GoToUrl("http://localhost/litecart/en/");
+        }
+        public void ExitBrowser()
+        {
+            Driver?.Quit();
+        }
     }
 }
